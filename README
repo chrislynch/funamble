@@ -1,0 +1,8 @@
+Funamble is a PHP Tumble Log & Tumblr Clone.
+
+The first part of the experiment was simply to see what could be built in two hours.
+Excluding a CMS, a workable Tumblr like environment was the result, with capacity for Text and Picture posts with skin support.
+
+No installer as yet, barely installable on any other platform, but INSTALL.SQL does exist. 
+
+Check index.php for everything else!

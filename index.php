@@ -7,20 +7,27 @@
 /*
  * CONFIG - Start here, setting configuration parameters for your site
  */
+// Database connection parameters
 $db_host = '127.0.0.1'; 		// DB Hostname/IP Address
 $db_user = 'root';				// DB Username
 $db_password = '';				// DB Password
 $db_schema = 'funamble';		// DB Schema
+
+// Site parameters
+$index_content=array();
+$index_content['title'] = 'Funamble';
+$index_content['keywords'] = 'Funamble,Tumblr,PHP';
+$index_content['description'] = 'Funamble is a Tumble Log and Tumblr Clone';
+
+// Look and feel
+$skin = 'unqualified';			// What template are we using? Expect this to be the skins directory
 /*
  * END OF CONFIG
  */
 
-/*
- * TEMPLATE - The other configurable component. The template for the page, and for an entry.
- */
-$template_page = '<html><head></head><body>%content%</body></html>';
-$template_entry = '<h1>%name%</h1>%content%';
-$template_tease = '<h1>%name%</h1>%teaser%<br/><a href="?index_id=%index_id%">Read More...</a>';
+$template_page = file_get_contents('skins/' . $skin . '/index.html');
+$template_entry = file_get_contents('skins/' . $skin . '/entry.html');
+$template_tease = file_get_contents('skins/' . $skin . '/teaser.html');
 
 /*
  * END OF TEMPLATE
@@ -29,6 +36,10 @@ $template_tease = '<h1>%name%</h1>%teaser%<br/><a href="?index_id=%index_id%">Re
 /*
  * And now, for the code!
  */
+
+// Set some variables that we need
+if (isset($_GET['index_id'])){$index_id = $_GET['index_id'];} else { $index_id = 0;}
+if (isset($_GET['search'])){$search = $_GET['search'];} else { $search = '';}
 
 // Start by making a database connection. No database = no funamble.
 $db = mysql_connect($db_host,$db_user,$db_password) or die('Could not connect to database. No database = No funamble');
@@ -39,13 +50,32 @@ mysql_selectdb($db_schema) or die('Could not find schema. No schema = No funambl
 // Having connected to the database, we need to display the page.
 // There are three "modes" that funamble can appear in. 1: Homepage mode. 2: Search mode. 3: Specific item mode.
 // Search mode requires that a search parameter is set. Specific item mode requires that an item ID is set. Homepage mode is the default.
-$content = content_homepage();
+if ($index_id){
+	$content = content_specific_item($index_id,FALSE);
+} elseif($search){
+	
+} else {
+	$content = content_homepage();	
+}
 
+// Once we have the content back, embed it in the page
+// Then set the page level content variables. These might have been altered earlier, hence we wait until now.
 $page = str_ireplace('%content%', $content, $template_page);
+foreach($index_content as $key=>$value){
+	$page = str_ireplace('%' . $key . '%', $value, $page);
+}
 
+// Now, clean up the DB connection.
 mysql_close($db);
 
+// Print out the page.
 print $page;
+
+exit;
+
+/*
+ * PAGE COMPLETE. WHAT FOLLOWS ARE THE FUNCTIONS REQUIRED TO RUN THE SYSTEM
+ */
 
 /*
  * CONTENT FUNCTIONS - THEY BRING BACK THE CONTENT
@@ -70,6 +100,7 @@ function content_specific_item($index_id,$tease){
 	/* 
 	 * Get the content of an article and output it using the template_entry template
 	 * We replace any instance of %field_name% with the equivalent field from the retrieved record.
+	 * When we are not in "tease" mode, we add in media.
 	 */
 	global $template_entry;
 	global $template_tease;
@@ -77,6 +108,7 @@ function content_specific_item($index_id,$tease){
 	
 	$articles = mysql_query('SELECT * FROM funamble_index WHERE index_id = ' . $index_id);
 	while($article = mysql_fetch_assoc($articles)){
+		if(!($tease)){$article['content'] = content_format_media($article['media'],$article['content_type']) . $article['content'];}
 		foreach($article as $key=>$value){
 			$content = str_ireplace('%' . $key . '%', $value, $content);
 		}
@@ -85,6 +117,21 @@ function content_specific_item($index_id,$tease){
 	return $content;
 }
 
+function content_format_media($media,$type){
+	/*
+	 * Take a media URL and format it ready for output
+	 */
+	switch($type){
+		case 'image':
+			$return  = '<img src="' . $media . '"><br/>';
+			break;
+		default:
+			$return = '<a href="' . $media . '">' . $media . '</a>';
+			break;		
+	}
+	
+	return $return;
+}
 
 /*
  * UTILITY FUNCTIONS - FOR THE DOING OF USEFUL THINGS
