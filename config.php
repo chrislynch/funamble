@@ -17,7 +17,12 @@ $index_content['description'] = 'Funamble is a Tumble Log and Tumblr Clone';
 // Look and feel
 $skin = 'unqualified';			// What template are we using? Expect this to be the skins directory
 
+// Paging control
 $articlesperpage = 10;
+
+// Embed options for video
+$embedWidth = '600';
+$embedHeight = '400';
 
 /*
  * END OF CONFIG

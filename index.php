@@ -14,6 +14,7 @@ include 'lib/markdown/markdown.php';
 $template_page = file_get_contents('skins/' . $skin . '/index.html');
 $template_entry = file_get_contents('skins/' . $skin . '/entry.html');
 $template_tease = file_get_contents('skins/' . $skin . '/teaser.html');
+$template_empty = file_get_contents('skins/' . $skin . '/blank.html');
 
 // Set some variables that we need
 if (isset($_GET['index_id'])){$index_id = $_GET['index_id'];} else { $index_id = 0;}
@@ -34,6 +35,8 @@ if ($index_id){
 	
 } else {
 	$content = content_homepage();	
+	if(isset($_GET['page'])){$page = $_GET['page'];} else {$page = 1;};
+	$content .= '<br><a href="?page=' . ($page + 1) . '">More...</a>';
 }
 
 // Once we have the content back, embed it in the page
@@ -63,11 +66,22 @@ function content_homepage(){
 	 * Get the X most recent articles and return their content.
 	 */
 	global $articlesperpage;
+	global $template_empty;
+	
+	if(isset($_GET['page'])){$page = $_GET['page'];} else {$page = 1;};
+	$limitStart = ($page -1) * $articlesperpage;
+		
 	$content = '';
-	$articles = mysql_query('SELECT index_id FROM funamble_index ORDER BY index_id DESC LIMIT ' . $articlesperpage);
-	while($article = mysql_fetch_assoc($articles)){
-		$content .= content_specific_item($article['index_id'],TRUE);
+	$articles = mysql_query('SELECT index_id FROM funamble_index ORDER BY index_id DESC LIMIT ' . $limitStart . ',' . $articlesperpage);
+	if (mysql_num_rows($articles) > 0){
+		while($article = mysql_fetch_assoc($articles)){
+			$content .= content_specific_item($article['index_id'],TRUE);
+		}	
+	} else {
+	
+		$content = $template_empty;
 	}
+	
 	return $content;
 }
 
@@ -103,9 +117,17 @@ function content_format_media($media,$type){
 	/*
 	 * Take a media URL and format it ready for output
 	 */
+	global $embedWidth;
+	global $embedHeight;
+	
 	switch($type){
 		case 'image':
-			$return  = '<img src="' . $media . '"><br/>';
+			$return  = '<img src="' . $media . '" width="' . $embedWidth . '"><br/>';
+			break;
+		case 'video':
+			parse_str(parse_url($media,PHP_URL_QUERY),$urlparams);
+			$return = '<iframe title="YouTube video player" width="' . $embedWidth . '" height="' . $embedHeight . '" 
+						src="http://www.youtube.com/embed/' . $urlparams['v'] . '" frameborder="0" allowfullscreen></iframe>';
 			break;
 		default:
 			$return = '<a href="' . $media . '">' . $media . '</a>';
