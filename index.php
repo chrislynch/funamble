@@ -62,8 +62,9 @@ function content_homepage(){
 	/*
 	 * Get the X most recent articles and return their content.
 	 */
+	global $articlesperpage;
 	$content = '';
-	$articles = mysql_query('SELECT index_id FROM funamble_index ORDER BY index_id DESC');
+	$articles = mysql_query('SELECT index_id FROM funamble_index ORDER BY index_id DESC LIMIT ' . $articlesperpage);
 	while($article = mysql_fetch_assoc($articles)){
 		$content .= content_specific_item($article['index_id'],TRUE);
 	}
@@ -83,8 +84,6 @@ function content_specific_item($index_id,$tease){
 	global $template_entry;
 	global $template_tease;
 	
-	include_once 'lib/markdown/markdown.php';
-	
 	if($tease){$content = $template_tease;} else {$content = $template_entry;}
 	
 	$articles = mysql_query('SELECT * FROM funamble_index WHERE index_id = ' . $index_id);
@@ -92,6 +91,7 @@ function content_specific_item($index_id,$tease){
 		if(!($tease)){$article['content'] = content_format_media($article['media'],$article['content_type']) . $article['content'];}
 		foreach($article as $key=>$value){
 			if ($key == 'content' || $key == 'teaser'){$value = Markdown($value);}
+			$value = utf8_decode($value);
 			$content = str_ireplace('%' . $key . '%', $value, $content);
 		}
 	}

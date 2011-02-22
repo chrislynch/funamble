@@ -17,6 +17,8 @@ $index_content['description'] = 'Funamble is a Tumble Log and Tumblr Clone';
 // Look and feel
 $skin = 'unqualified';			// What template are we using? Expect this to be the skins directory
 
+$articlesperpage = 10;
+
 /*
  * END OF CONFIG
  */
