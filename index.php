@@ -4,38 +4,16 @@
  * funamble - an attempt to build a tumblelog in a single PHP file in just two hours 
  */
 
-/*
- * CONFIG - Start here, setting configuration parameters for your site
- */
-// Database connection parameters
-$db_host = '127.0.0.1'; 		// DB Hostname/IP Address
-$db_user = 'root';				// DB Username
-$db_password = '';				// DB Password
-$db_schema = 'funamble';		// DB Schema
+// Include config file
+include 'config.php';
 
-// Site parameters
-$index_content=array();
-$index_content['title'] = 'Funamble';
-$index_content['keywords'] = 'Funamble,Tumblr,PHP';
-$index_content['description'] = 'Funamble is a Tumble Log and Tumblr Clone';
+// Include libraries
+include 'lib/markdown/markdown.php';
 
-// Look and feel
-$skin = 'unqualified';			// What template are we using? Expect this to be the skins directory
-/*
- * END OF CONFIG
- */
-
+// Load templates
 $template_page = file_get_contents('skins/' . $skin . '/index.html');
 $template_entry = file_get_contents('skins/' . $skin . '/entry.html');
 $template_tease = file_get_contents('skins/' . $skin . '/teaser.html');
-
-/*
- * END OF TEMPLATE
- */
-
-/*
- * And now, for the code!
- */
 
 // Set some variables that we need
 if (isset($_GET['index_id'])){$index_id = $_GET['index_id'];} else { $index_id = 0;}
