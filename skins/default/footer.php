@@ -1,5 +1,5 @@
 	<div class="container">
-		<div class="span-6 prepend-18">Powered by <a href="http://www.gravit-e.co.uk">Gravit-e 7</a></div>
+		<div class="span-6 prepend-18">Powered by <a href="https://github.com/chrislynch/funamble">Funamble</a></div>
 	</div>
 </body>
 		<!-- TODO: Include standard tracking code -->
