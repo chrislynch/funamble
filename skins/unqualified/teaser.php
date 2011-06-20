@@ -1,5 +1,5 @@
 <div class="post">
-	<h2 class="title"><a href="?index_id=%index_id%">%name%</a></h2>
+	<h2 class="title"><a href="<?php print $entry['url']; ?>"><?php print $entry['name']; ?></a></h2>
 	<p class="byline"><small>Posted on August 25th, 2007 by <a href="#">admin</a> | <a href="#">Edit</a></small></p>
 	<div class="entry">
 		%teaser%
