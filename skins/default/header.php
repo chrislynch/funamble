@@ -30,4 +30,3 @@
 		<!-- TODO: Should include some JQuery libraries by default, for things we like -->
 </head>
 <body>
-

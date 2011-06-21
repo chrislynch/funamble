@@ -26,6 +26,7 @@ $entries = getContent();
 
 // Now output the page.
 include include_template('header.php');
+include include_template('content-top.php');
 if (sizeof($entries) == 0){
 	include include_template('blank.php');
 } else {
@@ -37,6 +38,7 @@ if (sizeof($entries) == 0){
 		}
 	}
 }			
+include include_template('content-bottom.php');
 include include_template('footer.php');
 
 // Now, clean up the DB connection.
@@ -58,17 +60,24 @@ function getContent(){
 	$entries = array();
 	
 	$SQL = 'SELECT 	f.*,
-					CONCAT("?index_id=",index_id) AS url 
+					CONCAT("?index_id=",f.index_id) AS url 
 			FROM funamble_index f';
 	
 	if (isset($_GET['index_id']) && $_GET['index_id'] > 0 ){
 		$SQL .= ' WHERE index_id = ' . $_GET['index_id'];
+	} elseif(isset($_GET['tag'])){
+		$SQL .= ' JOIN funamble_index_tags t on f.index_id = t.index_id';
+		$SQL .= ' WHERE t.tag = "' . urldecode($_GET['tag']) . '"';
+	} elseif(isset($_GET['date'])){
+		$date = explode('-',$_GET['date']);
+		$SQL .= ' WHERE MONTH(f.timestamp) = ' . $date[1] . '';
+		$SQL .= ' AND YEAR(f.timestamp) = ' . $date[0] . '';
 	}
 	
 	if(isset($_GET['page'])){$page = $_GET['page'];} else {$page = 1;};
 	$limitStart = ($page -1) * $articlesperpage;
-	$SQL .= ' ORDER BY index_id DESC LIMIT ' . $limitStart . ',' . $articlesperpage;
-	
+	$SQL .= ' ORDER BY f.index_id DESC LIMIT ' . $limitStart . ',' . $articlesperpage;
+
 	$entriesData = mysql_query($SQL,$db);
 	
 	while($entry = mysql_fetch_assoc($entriesData)){

@@ -323,10 +323,10 @@ if ((!$dbl) or empty($submit)) {
  */
 
 // MySQL host name, user name, password, database, and table
-\$opts['hn'] = '$hn';
-\$opts['un'] = '$un';
-\$opts['pw'] = '$pw';
-\$opts['db'] = '$db';
+\$opts['hn'] = \$db_server;
+\$opts['un'] = \$db_user;
+\$opts['pw'] = \$db_password;
+\$opts['db'] = \$db_catalog;
 \$opts['tb'] = '$tb';
 
 // Name of field which is the unique key
@@ -502,7 +502,7 @@ appear in generated list. Here are some most used field options documented.
 
 	echo_buffer("
 // Now important call to phpMyEdit
-require_once 'phpMyEdit.class.php';
+require_once 'warp_cms/phpMyEdit/phpMyEdit.class.php';
 new phpMyEdit(\$opts);
 
 ?>
