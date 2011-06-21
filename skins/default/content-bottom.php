@@ -6,7 +6,7 @@
 	<h2>Tags</h2>
 	<?php include 'widgets/tags.php'; ?>	
 </div>
-<div class="span-6 last">
+<div class="span-5 prepend-1 last">
 	<!-- Second sidebar -->
 	<h2>Live Stream</h2>
 	<?php include 'widgets/lifestream.php'; ?>

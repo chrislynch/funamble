@@ -1,5 +1,5 @@
 	<div class="container">
-		<div class="span-4 prepend-20">Powered by <a href="https://github.com/chrislynch/funamble">Funamble</a></div>
+		<div class="span-5 prepend-19">Powered by <a href="https://github.com/chrislynch/funamble">Funamble</a></div>
 	</div>
 </body>
 		<!-- TODO: Include standard tracking code -->
