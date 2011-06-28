@@ -76,8 +76,8 @@ function getContent(){
 	
 	if(isset($_GET['page'])){$page = $_GET['page'];} else {$page = 1;};
 	$limitStart = ($page -1) * $articlesperpage;
-	$SQL .= ' ORDER BY f.index_id DESC LIMIT ' . $limitStart . ',' . $articlesperpage;
-
+	$SQL .= ' ORDER BY f.timestamp DESC LIMIT ' . $limitStart . ',' . $articlesperpage;
+	
 	$entriesData = mysql_query($SQL,$db);
 	
 	while($entry = mysql_fetch_assoc($entriesData)){
