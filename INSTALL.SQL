@@ -9,6 +9,12 @@ CREATE TABLE `funamble_index` (
   PRIMARY KEY (`index_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1243 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `funamble_tags` (
+  `tag` VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (`tag`)
+)
+ENGINE = MyISAM;
+
 CREATE TABLE  `funamble_index_tags` (
   `tag` varchar(255) NOT NULL,
   `index_id` int(11) NOT NULL,
