@@ -11,4 +11,17 @@
 	<h2>Live Stream</h2>
 	<?php include 'widgets/lifestream.php'; ?>
 </div>
+<div class="span-13 append-11">
+	<?php 
+		if (isset($_GET['page'])){
+			$page = $_GET['page'];
+			if ($page > 1){
+				print '<a href="?page=' . ($page - 1) . '">Go Back</a>/';
+			}
+		} else {
+			$page = 1;
+		}
+		print '<a href="?page=' . ($page + 1) . '">More</a>';
+	?>
+</div>
 </div> <!-- End Container -->

@@ -1,7 +1,7 @@
 <div class="span-12">
 	<h2><a href="<?php print $entry['url']; ?>"><?php print $entry['name']; ?></a></h2>
 	<div>
-		Posted on <?php print $entry['timestamp']; ?>
+		<h6>Posted on <?php print $entry['timestamp']; ?></h6>
 	</div>
 	<div>
 		<?php 
@@ -12,6 +12,6 @@
 		?>
 	</div>
 	<div>
-		<a href="<?php print $entry['url']; ?>">Read "<?php print $entry['name']; ?>"</a>
+		<p><a href="<?php print $entry['url']; ?>">Read "<?php print $entry['name']; ?>"</a></p>
 	</div>
 </div>
