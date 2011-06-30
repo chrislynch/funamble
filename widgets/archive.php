@@ -4,6 +4,7 @@ $archiveEntries = mysql_query('
 	FROM funamble_index
 	GROUP BY YEAR(timestamp),MONTH(timestamp)
 	ORDER BY YEAR(timestamp) DESC, MONTH(timestamp) DESC
+	LIMIT 24
 ',$db);
 
 print '<ul>';

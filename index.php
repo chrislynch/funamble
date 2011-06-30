@@ -26,6 +26,7 @@ $entries = getContent();
 
 // Now output the page.
 include include_template('header.php');
+
 include include_template('content-top.php');
 if (sizeof($entries) == 0){
 	include include_template('blank.php');

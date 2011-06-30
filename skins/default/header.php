@@ -21,6 +21,12 @@
   		<link rel="stylesheet" href="@@site.warpcore@@templates/default/blueprint/ie.css" type="text/css" media="screen, projection">
 		<![endif]-->
 		
+		<!-- Menu helpers -->
+		<link href="menus/css/dropdown/dropdown.linear.columnar.css" media="screen" rel="stylesheet" type="text/css" />
+		
+		<!-- Menu theme -->
+		<link href="menus/css/dropdown/themes/lwis.celebrity/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
+		
 		<!-- SITE/DOMAIN SPECIFIC INCLUDES. THESE ARE THEREFORE MANDATORY -->
 		
 		<!-- Shortcut icon TODO: Need to make this easy to replace from an inheriting template-->

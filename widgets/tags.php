@@ -4,6 +4,7 @@ $archiveEntries = mysql_query('
 	FROM funamble_index_tags
 	GROUP BY tag
 	ORDER BY COUNT(0) DESC,tag ASC
+	LIMIT 40
 ',$db);
 
 print '<ul>';
