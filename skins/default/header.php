@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<!-- Title and SEO information -->
-		<title>@@seo.title@@</title>
-		<meta name="abstract" content="@@seo.title@@" />
-		<meta name="keywords" content="@@seo.meta_keywords@@" />
-		<meta name="description" content="@@seo.meta_description@@" />
+		<title><?php print $index_content['title'];?></title>
+		<meta name="abstract" content="<?php print $index_content['title'];?>" />
+		<meta name="keywords" content="<?php print $index_content['keywords'];?>" />
+		<meta name="description" content="<?php print $index_content['description'];?>" />
 		<!-- Google, Yahoo, and Bing tracking -->
 		<meta name="google-site-verification" content="@@seo.google_site_verification@@" />
 		<META name="y_key" content="@@seo.yahoo_site_verification@@" />
@@ -20,12 +20,6 @@
 		<!--[if lt IE 8]>
   		<link rel="stylesheet" href="@@site.warpcore@@templates/default/blueprint/ie.css" type="text/css" media="screen, projection">
 		<![endif]-->
-		
-		<!-- Menu helpers -->
-		<link href="menus/css/dropdown/dropdown.linear.columnar.css" media="screen" rel="stylesheet" type="text/css" />
-		
-		<!-- Menu theme -->
-		<link href="menus/css/dropdown/themes/lwis.celebrity/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 		
 		<!-- SITE/DOMAIN SPECIFIC INCLUDES. THESE ARE THEREFORE MANDATORY -->
 		
