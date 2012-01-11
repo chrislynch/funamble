@@ -1,0 +1,47 @@
+<?php
+/*
+ * Admin file. All admin functions are run by this file and must be called by it.
+ * First thing to do is make sure that we are allowed to be here!
+ */
+
+if (!isset($_COOKIE['funamble_admin'])){
+	// No log in cookie, so pootle off to the login script.
+	$admin_action = 'admin_login';
+} else {
+	// We are logged in, so let's see what actions we are trying to do
+	if (isset($_REQUEST['admin_action'])){
+		$admin_action = $_REQUEST['admin_action']
+	} else {
+		$admin_action = 'admin_home';
+	}
+}
+
+/*
+ * Now that we have decided what we are doing, output the appropriate form inside a nice form.
+ */
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Title and SEO information -->
+		<title>Funamble</title>
+		
+		<!-- Blueprint CSS http://www.blueprintcss.org -->
+		<link rel="stylesheet" href="../blueprint/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="../blueprint/print.css" type="text/css" media="print">
+		<!--[if lt IE 8]>
+  		<link rel="stylesheet" href="@@site.warpcore@@templates/default/blueprint/ie.css" type="text/css" media="screen, projection">
+		<![endif]-->
+		
+		<!-- TODO: Could include some JQuery libraries by default, for things we like -->
+</head>
+<body>
+
+<?php 
+
+?>
+
+</body>
+</html>
