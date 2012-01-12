@@ -9,13 +9,13 @@ include 'bootstrap.php';
 
 if (!isset($_COOKIE['funamble_admin']) && $root_password !== ''){
 	// No log in cookie, so pootle off to the login script.	
-	$admin_action = 'admin/admin_login';	
+	$admin_action = 'admin_login';	
 } else {
 	// We are logged in, so let's see what actions we are trying to do
 	if (isset($_REQUEST['admin_action'])){
 		$admin_action = $_REQUEST['admin_action'];
 	} else {
-		$admin_action = 'admin/admin_home';
+		$admin_action = 'admin_home';
 	}
 }
 
@@ -42,12 +42,23 @@ if (!isset($_COOKIE['funamble_admin']) && $root_password !== ''){
 </head>
 <body>
 <div class="container">
-	<div class="span 24 last"><h1>Funamble</h1></div>
+	<div class="span 24 last"><a href="admin.php"><h1>My Funamble</h1></a></div>
 	<div class="span 24 last"></div>
+		<div class="span-18">
 		<?php 
 			// include 'lib/phpminiadmin/phpminiadmin.php';
-			include $admin_action . '.php';
+			include 'admin/' . $admin_action . '.php';
 		?>
+		</div>
+		<div class="span-6 last">
+		<?php 
+			if (file_exists('admin/sidebars/' . $admin_action . '.php')){
+				include 'admin/sidebars/' . $admin_action . '.php';
+			} else {
+				include 'admin/sidebars/admin_home.php';
+			}
+		?>
+		</div>
 	</div>
 </div>
 </body>
