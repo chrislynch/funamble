@@ -6,6 +6,7 @@
 
 // Include config file
 include 'config.php';
+include 'bootstrap.php';
 
 // Include libraries
 include 'lib/markdown/markdown.php';
@@ -13,12 +14,6 @@ include 'lib/markdown/markdown.php';
 // Set some variables that we need
 if (isset($_GET['index_id'])){$index_id = $_GET['index_id'];} else { $index_id = 0;}
 if (isset($_GET['search'])){$search = $_GET['search'];} else { $search = '';}
-
-// Start by making a database connection. No database = no funamble.
-$db = mysql_connect($db_host,$db_user,$db_password) or die('Could not connect to database. No database = No funamble');
-// Now select the fumable db
-mysql_selectdb($db_schema) or die('Could not find schema. No schema = No funamble');
-// Ideally, we would now check to see if the table(s) are there and, if not, create them. If there's time, we can come back and do this.
 
 // Having connected to the database, we need to display the content
 // All content is supplied by the "get Content" function, which independently picks up parameters in the URL
@@ -85,6 +80,9 @@ function getContent(){
 		// Apply markdown
 		$entry['content'] = utf8_decode(Markdown($entry['content']));
 		$entry['teaser'] = utf8_decode(Markdown($entry['teaser']));
+		if ($entry['teaser'] == $entry['content'] || strlen(trim($entry['teaser'])) == 0){
+			$entry['teaser'] = substr(strip_tags($entry['content']),0,250) . ' ...';
+		}
 		// Add media
 		$entry['content_media'] = content_format_media($entry['media'],$entry['content_type'],'content');
 		$entry['teaser_media'] = content_format_media($entry['media'],$entry['content_type'],'teaser');		

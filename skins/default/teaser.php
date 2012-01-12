@@ -5,9 +5,6 @@
 	</div>
 	<div>
 		<?php 
-			if ($entry['teaser'] == $entry['content'] || strlen(trim($entry['teaser'])) == 0){
-				$entry['teaser'] = substr(strip_tags($entry['content']),0,250) . ' ...';
-			}
 			print $entry['teaser']; 
 		?>
 	</div>
