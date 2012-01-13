@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #F5F2D5;
+	font-family: 'IM Fell DW Pica', serif;
+	font-size: 100%; 
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 4em;	
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 2em;
+}
+
+h3 {
+	font-style: italic;
+	font-size: 2em;
+}
+
+p.credits {
+	font-size: 80%;
+}
+
+p.excerpt-links {
+	text-align: right;
+}
