@@ -2,6 +2,9 @@
 /*
  * CONFIG - Start here, setting configuration parameters for your site
  */
+// MOST IMPORTANT OF ALL - YOUR ROOT ADMIN PASSWORD
+$root_password = '';
+
 // Database connection parameters
 $db_host = '127.0.0.1'; 		// DB Hostname/IP Address
 $db_user = 'root';				// DB Username

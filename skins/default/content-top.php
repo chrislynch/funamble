@@ -1,5 +1,4 @@
 <div class="container">
-<?php include include_template('menu.php'); ?>
 <div class="span-24 showgrid"><h1><a href="?">Funamble</a></h1></div>
 <?php if (isset($_GET['index_id'])){
 ?>
