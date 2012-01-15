@@ -28,3 +28,12 @@ p.credits {
 p.excerpt-links {
 	text-align: right;
 }
+
+#sidebar {
+	width: 250px !important;
+	padding-left: 10px;
+	
+	border-left-style: double;	
+	border-left-width: 7px;
+	border-left-color: #9b7609;
+}
