@@ -1,3 +1,6 @@
+			<div class="span-16 append-1 last">
+				<?php include 'widgets/pager.php'; ?>
+			</div>
 		</div>
 		<div id="sidebar" class="span-6 last">
 			<!-- The Dark, Blood Brothers -->

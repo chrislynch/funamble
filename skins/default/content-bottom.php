@@ -19,16 +19,6 @@ if (! isset($_GET['index_id'])){
 	<?php include 'widgets/lifestream.php'; ?>
 </div>
 <div class="span-13 append-11">
-	<?php 
-		if (isset($_GET['page'])){
-			$page = $_GET['page'];
-			if ($page > 1){
-				print '<a href="?page=' . ($page - 1) . '">Go Back</a>/';
-			}
-		} else {
-			$page = 1;
-		}
-		print '<a href="?page=' . ($page + 1) . '">More</a>';
-	?>
+	<?php include 'widgets/pager.php'; ?>
 </div>
 </div> <!-- End Container -->
