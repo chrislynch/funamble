@@ -1,0 +1,12 @@
+# Make CMS handle any 404 errors.
+ErrorDocument 404 index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Rewrite URLs of the form 'x' to the form 'index.php?q=x'.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteRule ^(.*)$ index.php?funambleurl=$1 [L,QSA]
+</IfModule>
