@@ -6,6 +6,7 @@
 
 include 'config.php';
 include 'bootstrap.php';
+include 'funamble.php';
 
 if (!isset($_COOKIE['funamble_admin']) && $root_password !== ''){
 	// No log in cookie, so pootle off to the login script.	
@@ -32,8 +33,7 @@ if (!isset($_COOKIE['funamble_admin']) && $root_password !== ''){
 		<title>Funamble</title>
 		
 		<!-- Blueprint CSS http://www.blueprintcss.org -->
-		<link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
+		<link rel="stylesheet" href="lib/blueprint/screen.css" type="text/css" media="screen, projection">
 		<!--[if lt IE 8]>
   		<link rel="stylesheet" href="@@site.warpcore@@templates/default/blueprint/ie.css" type="text/css" media="screen, projection">
 		<![endif]-->

@@ -22,7 +22,7 @@
 	<meta name="robots" content="index,follow" />
 	
 	<!-- Blueprint CSS http://www.blueprintcss.org -->
-	<link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="lib/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="skins/<?php print $skin;?>/index.css">
 	<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica:400,400italic' rel='stylesheet' type='text/css'>
 	<!--[if lt IE 8]>
