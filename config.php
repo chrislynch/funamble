@@ -12,7 +12,7 @@ $db_password = '';				// DB Password
 $db_schema = 'funamble';		// DB Schema
 
 // Site parameters
-$index_content=array();
+$index_content = array();
 $index_content['title'] = 'Funamble';
 $index_content['keywords'] = 'Funamble,Tumblr,PHP';
 $index_content['description'] = 'Funamble is a Tumble Log and Tumblr Clone';

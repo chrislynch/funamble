@@ -57,10 +57,10 @@ if (isset($_GET['index_id'])){
 	<textarea rows="30" cols="10" name="f_teaser"><?php if (isset($entry['teaser'])){print $entry['teaser'];} ?></textarea><br><br>
 	<h3>Media</h3>
 	<input type="text" size="70" name="f_media" value="<?php if (isset($entry['media'])){print $entry['media'];} ?>">
-	<select name="f_content_type">
-		<option value="" <?php if (isset($entry['content_type']) && $entry['content_type'] = ''){print 'SELECTED';} ?>></option>
-		<option value="image" <?php if (isset($entry['content_type']) && $entry['content_type'] = 'image'){print 'SELECTED';} ?>>Image</option>
-		<option value="video" <?php if (isset($entry['content_type']) && $entry['content_type'] = 'video'){print 'SELECTED';} ?>>Video</option>
+	<select name="f_media_type">
+		<option value="" <?php if (isset($entry['media_type']) && $entry['media_type'] = ''){print 'SELECTED';} ?>></option>
+		<option value="image" <?php if (isset($entry['media_type']) && $entry['media_type'] = 'image'){print 'SELECTED';} ?>>Image</option>
+		<option value="video" <?php if (isset($entry['media_type']) && $entry['media_type'] = 'video'){print 'SELECTED';} ?>>Video</option>
 	</select>
 	<h3>Save</h3>
 	<input type="submit" value="Save" name="f_save">

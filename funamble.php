@@ -37,8 +37,8 @@ function getContent(){
 			$entry['teaser'] = substr(strip_tags($entry['content']),0,250) . ' ...';
 		}
 		// Add media
-		$entry['content_media'] = content_format_media($entry['media'],$entry['content_type'],'content');
-		$entry['teaser_media'] = content_format_media($entry['media'],$entry['content_type'],'teaser');		
+		$entry['content_media'] = content_format_media($entry['media'],$entry['media_type'],'content');
+		$entry['teaser_media'] = content_format_media($entry['media'],$entry['media_type'],'teaser');		
 		
 		$entries[$entry['index_id']] = $entry;
 	}
