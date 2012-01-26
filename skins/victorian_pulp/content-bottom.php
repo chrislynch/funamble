@@ -13,7 +13,6 @@
 			</div>
 			<h2>Twitterati</h2>
 			<?php include 'widgets/lifestream.php'; ?>
-			<h2>Linkages</h2>
 		</div>
 	</div>
 	
