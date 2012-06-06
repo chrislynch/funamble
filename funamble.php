@@ -12,10 +12,10 @@ function getContent(){
 					CONCAT("?index_id=",f.index_id) AS url,
 					GROUP_CONCAT(it.tag) AS tags 
 			FROM funamble_index f
-			JOIN funamble_index_tags it on it.index_id = f.index_id ';
+			LEFT OUTER JOIN funamble_index_tags it on it.index_id = f.index_id ';
 	
 	if (isset($_GET['index_id']) && $_GET['index_id'] > 0 ){
-		$SQL .= ' WHERE index_id = ' . $_GET['index_id'];
+		$SQL .= ' WHERE f.index_id = ' . $_GET['index_id'];
 	} elseif(isset($_GET['tag'])){
 		$SQL .= ' JOIN funamble_index_tags t on f.index_id = t.index_id';
 		$SQL .= ' WHERE t.tag = "' . urldecode($_GET['tag']) . '"';
@@ -28,6 +28,7 @@ function getContent(){
 	if(isset($_GET['page'])){$page = $_GET['page'];} else {$page = 1;};
 	$limitStart = ($page -1) * $articlesperpage;
 	$SQL .= ' GROUP BY f.index_id ORDER BY f.timestamp DESC LIMIT ' . $limitStart . ',' . $articlesperpage;
+	print $SQL;
 	$entriesData = mysql_query($SQL,$db);
 	
 	while($entry = mysql_fetch_assoc($entriesData)){
